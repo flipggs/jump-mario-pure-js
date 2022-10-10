@@ -5,10 +5,14 @@ const clouds = document.querySelector(".clouds");
 const jump = () => {
   mario.classList.add("jump");
 
+  let timeout = 500;
+
+  if (window.innerWidth <= 480) timeout = 800;
+
   const jump = setTimeout(() => {
     mario.classList.remove("jump");
     clearTimeout(jump);
-  }, 500);
+  }, timeout);
 };
 
 const loop = setInterval(() => {
@@ -30,6 +34,10 @@ const loop = setInterval(() => {
 
     clouds.style.animation = "none";
     clouds.style.left = `${cloudsPosition}.px`;
+
+    if (window.confirm("Desseja jogar novamente")) {
+      window.location.reload();
+    }
     clearInterval(loop);
   }
 }, 10);
